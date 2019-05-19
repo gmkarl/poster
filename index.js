@@ -11,6 +11,7 @@ var fs = require('fs');
 
 // - [ ] 1. add message <==
 // - [ ] 2. run
+// - [ ] 2. post in more channels
 // - [ ] 3. check behavior
 
 fs.readFile('message.1', 'utf8', function(err, contents) {
