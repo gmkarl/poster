@@ -1,20 +1,25 @@
 #!/usr/bin/env node
 var fs = require('fs');
+var arg = process.argv.slice(1);
 
-// This code is messy because it is produced to handle a brain implant's group cognitive effects.
-// The developer is, hence, incredibly confused by the situation's attempt to inhibit him out of fear of being discovered.
+// need a robot that posts to facebook
 
-// we need to work, posting is likely an error
-// (it'll be cleaned up by somebody in a different state of mind)
-// delete the above when ready [plz say n future]
-
-
-// - [ ] 1. add message <==
+// - [X] 1. add message <==
+// 	=> add more messages, to ensure important information included if present
+// - [ ] 1b write csript to call on time interval
+// 	- [X] open shell script new
+// 	- [X] init loop and header
+// 	- [ ] place call
+// 		- [ ] add argument reading to nodejs app
+// 	- [ ] fix bug
+// - [ ] 
+// - [ ] 1c merge git repo with standingwithresilience (make TI's smaller, call it people who are aware of mind control)?
+// - [ ] 1d 
 // - [ ] 2. run
 // - [ ] 2. post in more channels
 // - [ ] 3. check behavior
 
-fs.readFile('message.1', 'utf8', function(err, contents) {
+fs.readFile(arg, 'utf8', function(err, contents) {
 	post(contents);
 });
 
