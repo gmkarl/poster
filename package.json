@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "datacash": "^1.2.1"
+    "datacash": "^1.2.1",
+    "scuttlebot": "^13.2.2"
   }
 }
