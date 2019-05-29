@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "datacash": "^1.2.1",
+    "datacash": "github:unwriter/datacash#bb481657c1932637ace2a41804bba7b1104e8881",
     "scuttlebot": "^13.2.2"
   }
 }
