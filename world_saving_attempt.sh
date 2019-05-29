@@ -6,11 +6,6 @@ then
 	IP="$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '"')"
 	echo "$IP"
 
-	while true
-	do
-		node_modules/.bin/sbot server #--host "$IP"
-	done &
-
 	if torify --version
 	then
 		torify "$0" "$IP"

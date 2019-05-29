@@ -1,11 +1,10 @@
 [Unit]
-Description=World Saving Attempt
-After=scuttlebutt_pub.service
+Description=Scuttlebutt Pub
 
 [Service]
 User=worldsavingattempt
 WorkingDirectory=/opt/poster
-ExecStart=/opt/poster/world_saving_attempt.sh
+ExecStart=/opt/poster/node_modules/.bin/sbot server
 Nice=20
 Restart=always
 
