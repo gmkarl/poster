@@ -2,6 +2,7 @@
 Description=World Saving Attempt
 
 [Service]
+User=worldsavingattempt
 WorkingDirectory=/opt/poster
 ExecStart=/usr/bin/nice --20 /opt/poster/world_saving_attempt.sh
 Restart=always
