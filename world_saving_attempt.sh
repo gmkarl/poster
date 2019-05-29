@@ -1,14 +1,22 @@
 #!/bin/sh
 
-if test "$1" = "" && torify --version
+IP="$1"
+if test "$IP" = ""
 then
-	torify "$0" tor
-fi
+	IP="$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '"')"
+	echo "$IP"
 
-while true
-do
-	node_modules/.bin/sbot server --host 0.0.0.0
-done &
+	while true
+	do
+		node_modules/.bin/sbot server #--host "$IP"
+	done &
+
+	if torify --version
+	then
+		torify "$0" "$IP"
+		exit 0
+	fi
+fi
 
 while true
 do
