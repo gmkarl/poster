@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if test "$1" = "" && torify --version
+then
+	torify "$0" tor
+fi
+
 while true
 do
 	node_modules/.bin/sbot server --host 0.0.0.0
