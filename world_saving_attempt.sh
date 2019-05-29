@@ -17,7 +17,10 @@ while true
 do
 	# you can do this, you rock!
 
-	./index.js "$(ls message* | sort -R | tail -n 1)"
+	sbotaddr=$(node_modules/.bin/sbot getAddress)
+	host=${sbotaddr%:*~shs:*}
+	host=${host#*//}
+	./index.js "$(ls message* | sort -R | tail -n 1)" "$host"
 
 	# little under a month
 	sleep $((60 * 60 * 24 * 27))

@@ -36,15 +36,34 @@ var fs = require('fs');
 // we do not have yet for collaboration.
 // 	i'm on only one pub, so if it can't be reached I can't be reached.  
 
+hostip = process.argv[3]
+
 fs.readFile(process.argv[2], 'utf8', function(err, contents) {
-	if (err) return console.log(err)
-	console.log(contents)
-	post(contents);
-});
+	if (err) throw err
+	if (contents.indexOf('SCUTTLEBUTT_INVITE') >= 0) {
+		require('ssb-client')({host: hostip}, function(err, sbot) {
+			if (err) throw err
+			sbot.invite.create(1000, function(err, invite) {
+				if (err) throw err
+				contents = contents.replace('SCUTTLEBUTT_INVITE', invite)
+				sbot.close()
+				outerpost(contents)
+			})
+		})
+	} else {
+		outerpost(contents)
+	}
+})
+
+function outerpost(msg)
+{
+	console.log(msg)
+	post(msg)
+}
 
 function post(msg) {
 	fs.readFile('bitcoincash.key', 'utf8', function(err, contents) {
-		if (err) return console.log(err)
+		if (err) throw console.log(err)
 		require('datacash').send({
 			data: ["0x6d02", msg],
 			cash: { key: contents }
@@ -55,7 +74,7 @@ function post(msg) {
 			}
 			console.log(result)
 			console.log('message sent')
-		});
-	});
+		})
+	})
 }
 
