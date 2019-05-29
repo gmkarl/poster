@@ -36,16 +36,25 @@ var fs = require('fs');
 // we do not have yet for collaboration.
 // 	i'm on only one pub, so if it can't be reached I can't be reached.  
 
-
 fs.readFile(process.argv[2], 'utf8', function(err, contents) {
+	if (err) return console.log(err)
 	post(contents);
 });
 
 function post(msg) {
 	fs.readFile('bitcoincash.key', 'utf8', function(err, contents) {
+		if (err) return console.log(err)
+		console.log(msg)
 		require('datacash').send({
 			data: ["0x6d02", msg],
 			cash: { key: contents }
+		}, function(error, result) {
+			if (error) {
+				console.log(error)
+				return post(msg)
+			}
+			console.log(result)
+			console.log('message sent')
 		});
 	});
 }
